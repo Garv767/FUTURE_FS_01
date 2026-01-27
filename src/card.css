@@ -1,0 +1,16 @@
+div {
+    border: 1px solid #ccc;
+    padding: 16px;
+    margin: 16px;
+    border-radius: 8px;
+    background-color: #292525;
+}
+
+h2 {
+  color: rgb(147, 147, 168);
+  font-size: 1.5em;
+}
+
+p {
+  color: gray;
+}
