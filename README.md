@@ -1,16 +1,49 @@
-# React + Vite
+<h2 align="center">
+  Portfolio Website<br/>
+  <a href="https://garv767.github.io/" target="_blank">garv767.github.io</a>
+</h2>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+<br/>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Built With
 
-## Expanding the ESLint configuration
+My personal portfolio <a href="https://garv767.github.io/" target="_blank">garv767.github.io</a> which features some of my github projects as well as my resume and technical skills.<br/>
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project was built using these technologies.
+
+- React.js
+- Node.js
+- Express.js
+- CSS3
+- VsCode
+- Vercel
+
+## Features
+
+**📖 Multi-Page Layout**
+
+**🎨 Styled with React-Bootstrap and Css with easy to customize colors**
+
+**📱 Fully Responsive**
+
+## Getting Started
+
+Clone down this repository. You will need `node.js` and `git` installed globally on your machine.
+
+## 🛠 Installation and Setup Instructions
+
+1. Installation: `npm install`
+
+2. In the project directory, you can run: `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The page will reload if you make edits.
+
+## Usage Instructions
+
+Open the project folder and Navigate to `/src/components/`. <br/>
+You will find all the components used and you can edit your information accordingly.
