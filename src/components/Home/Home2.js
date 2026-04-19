@@ -1,60 +1,46 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import myImg from "../../Assets/avatar.svg";
-import Tilt from "react-parallax-tilt";
+import { ImPointRight } from "react-icons/im";
 
 function Home2() {
   return (
     <Container fluid className="home-about-section" id="about">
       <Container>
-        <Row>
-          <Col md={8} className="home-about-description">
-            <h1 style={{ fontSize: "2.6em" }}>
-              LET ME <span className="purple"> INTRODUCE </span> MYSELF
-            </h1>
-            <p className="home-about-body">
-              I’m a Software Engineer who loves transforming ideas into
-              reliable, scalable products. Over time, I’ve explored several
-              technologies and found my passion in building high-performance
-              systems and intuitive user experiences.
-              <br />
-              <br />
-              I’m proficient in
-              <i>
-                <b className="purple">
-                  {" "}
-                  JavaScript, C, Python, Go and Java{" "}
-                </b>
-              </i>
-              — and I enjoy working across both backend and frontend stacks.
-              <br />
-              <br />
-              My key areas of interest include developing
-              <i>
-                <b className="purple">
-                  {" "}
-                  Web Applications, Browser Extensions,{" "}
-                </b>
-              </i>
-              and exploring new ways to bridge on-chain and off-chain systems.
-              <br />
-              <br />
-              Whenever possible, I love building projects with
-              <b className="purple"> Node.js </b> and modern frameworks like{" "}
-              <i>
-                <b className="purple">React.js</b> and{" "}
-                <b className="purple">Next.js</b>.
-              </i>
+        <Row style={{ justifyContent: "center", padding: "10px" }}>
+          <Col md={8}>
+            <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)", fontSize: "0.8rem", marginBottom: 12 }}>
+              $ cat about.txt
             </p>
-          </Col>
-          <Col md={4} className="myAvtar">
-            <Tilt>
-              <img src={myImg} className="img-fluid" alt="avatar" />
-            </Tilt>
+            <div className="quote-card-view">
+              <p style={{ marginBottom: 12, color: "var(--text-primary)", lineHeight: 1.9 }}>
+                Hi! I'm{" "}
+                <span className="cyber-glow-static">Garv Rahut</span> from{" "}
+                <span style={{ color: "var(--cyber-blue)" }}>Indore, India</span>.
+                I'm pursuing{" "}
+                <span style={{ color: "var(--cyber-blue)" }}>B.Tech in CSE</span> at{" "}
+                <span className="cyber-glow-static">SRM IST, KTR</span>.
+                I build full-stack systems with a focus on security, performance, and open-source tooling.
+              </p>
+              <ul className="about-activity">
+                {["Gaming & Competitive FPS 🎮", "Writing Tech Blogs ✍️", "Exploring New Places 🌍"].map((item) => (
+                  <li key={item}>
+                    <ImPointRight style={{ color: "var(--cyber-green)", marginRight: 8 }} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", marginTop: 16 }}>
+                <span style={{ color: "var(--cyber-green)" }}>" </span>
+                Strive to build things that make a difference!
+                <span style={{ color: "var(--cyber-green)" }}> "</span>
+                <span style={{ color: "var(--text-dim)", marginLeft: 12 }}>— garv767</span>
+              </p>
+            </div>
           </Col>
         </Row>
       </Container>
     </Container>
   );
 }
+
 export default Home2;

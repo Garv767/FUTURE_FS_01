@@ -9,11 +9,13 @@ import Resume from "./components/Resume/ResumeNew";
 import Login from "./components/Auth/Login";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
+import MissionLog from "./components/Missions/MissionLog";
+import TerminalBackground from "./components/TerminalBackground";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate
+  Navigate,
 } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import "./style.css";
@@ -21,28 +23,27 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  const [load, upadateLoad] = useState(true);
+  const [load, setLoad] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      upadateLoad(false);
-    }, 1200);
-
-    return () => clearTimeout(timer);
+    const t = setTimeout(() => setLoad(false), 1800);
+    return () => clearTimeout(t);
   }, []);
 
   return (
     <Router basename="/portfolio">
       <Preloader load={load} />
       <div className="App" id={load ? "no-scroll" : "scroll"}>
+        <TerminalBackground />
         <Navbar />
         <ScrollToTop />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/project" element={<Projects />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/"         element={<Home />} />
+          <Route path="/project"  element={<Projects />} />
+          <Route path="/about"    element={<About />} />
+          <Route path="/resume"   element={<Resume />} />
+          <Route path="/missions" element={<MissionLog />} />
+          <Route path="/login"    element={<Login />} />
           <Route
             path="/admin"
             element={

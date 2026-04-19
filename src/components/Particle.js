@@ -7,43 +7,37 @@ function Particle() {
       id="tsparticles"
       params={{
         particles: {
-          number: {
-            value: 160,
-            density: {
-              enable: true,
-              value_area: 1500,
-            },
-          },
+          number: { value: 60, density: { enable: true, value_area: 1200 } },
+          color: { value: "#00ff41" },
+          shape: { type: "circle" },
+          opacity: { value: 0.15, random: true, anim: { enable: true, speed: 0.4, opacity_min: 0.05, sync: false } },
+          size: { value: 1.5, random: true },
           line_linked: {
-            enable: false,
-            opacity: 0.03,
+            enable: true,
+            distance: 140,
+            color: "#00ff41",
+            opacity: 0.07,
+            width: 1,
           },
           move: {
-            direction: "right",
-            speed: 0.05,
-          },
-          size: {
-            value: 1,
-          },
-          opacity: {
-            anim: {
-              enable: true,
-              speed: 1,
-              opacity_min: 0.05,
-            },
+            enable: true,
+            speed: 0.8,
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
           },
         },
         interactivity: {
+          detect_on: "canvas",
           events: {
-            onclick: {
-              enable: true,
-              mode: "push",
-            },
+            onhover: { enable: true, mode: "grab" },
+            onclick: { enable: false },
+            resize: true,
           },
           modes: {
-            push: {
-              particles_nb: 1,
-            },
+            grab: { distance: 120, line_linked: { opacity: 0.2 } },
           },
         },
         retina_detect: true,

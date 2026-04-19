@@ -29,7 +29,7 @@ function Techstack() {
     <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
       
       <Col xs={4} md={2} className="tech-icons">
-        <img src={Javascript} alt="javascript" />
+        <img src={Javascript} alt="javascript" className="tech-icon-images" />
         <div className="tech-icons-text">Javascript</div>
       </Col>
       <Col xs={4} md={2} className="tech-icons">

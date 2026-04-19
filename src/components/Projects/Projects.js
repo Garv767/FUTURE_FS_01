@@ -3,34 +3,44 @@ import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
 import Particle from "../Particle";
 import useProjects from "../../hooks/useProjects";
-import Preloader from "../Pre";
 
 function Projects() {
   const { projects, loading, error } = useProjects();
-
-  if (loading) return <Preloader load={true} />;
 
   return (
     <Container fluid className="project-section">
       <Particle />
       <Container>
-        <h1 className="project-heading">
-          My Recent <strong className="purple">Works </strong>
-        </h1>
-        <p style={{ color: "white" }}>
-          Here are a few projects I've worked on recently.
-        </p>
+        <div className="project-heading">
+          <span>&gt; ls /repos --filter=featured</span>
+          <strong className="cyber-glow-static d-block mt-1">PROJECTS</strong>
+        </div>
+
+        {loading && (
+          <div style={{ fontFamily: "var(--font-mono)", color: "var(--text-muted)", padding: "40px 0", fontSize: "0.85rem" }}>
+            <p>[SYS] Initializing GitHub API client...</p>
+            <p>[NET] GET /users/garv767/repos HTTP/1.1</p>
+            <p style={{ color: "var(--cyber-green)" }}>[200] Fetching repositories<span className="cursor-blink" /></p>
+          </div>
+        )}
+
         {error && (
-          <p className="text-danger text-center">
-            Failed to load projects. Check console for details.
+          <p style={{ color: "var(--cyber-red)", fontFamily: "var(--font-mono)", fontSize: "0.85rem" }}>
+            [ERR 500] Repository fetch failed. Check console.
           </p>
         )}
-        <Row style={{ justifyContent: "center", paddingBottom: "10px" }}>
+
+        {!loading && !error && projects.length === 0 && (
+          <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-mono)", marginTop: 40 }}>
+            [INFO] No processes found. Tag a repo with 'portfolio' or enable via Admin Panel.
+          </p>
+        )}
+
+        <Row style={{ justifyContent: "center", paddingBottom: 20 }}>
           {projects.map((project) => (
             <Col md={4} className="project-card" key={project.id}>
               <ProjectCard
                 imgPath={project.imgPath}
-                isBlog={false}
                 title={project.title}
                 description={project.description}
                 ghLink={project.ghLink}
@@ -41,12 +51,6 @@ function Projects() {
               />
             </Col>
           ))}
-          {projects.length === 0 && !loading && !error && (
-            <p className="text-center mt-5" style={{ color: "gray" }}>
-              No projects featured yet. Tag a GitHub repo with the{" "}
-              <strong>'portfolio'</strong> topic or enable one in the Admin Panel!
-            </p>
-          )}
         </Row>
       </Container>
     </Container>

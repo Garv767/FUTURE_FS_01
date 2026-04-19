@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://Garv767.github.io/portfolio",
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@react-pdf/renderer": "^2.2.0",
     "@supabase/supabase-js": "^2.103.0",
     "@testing-library/jest-dom": "^5.16.2",

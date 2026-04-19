@@ -1,52 +1,95 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { AiFillGithub } from "react-icons/ai";
 import { CgWebsite } from "react-icons/cg";
-import { BsGithub } from "react-icons/bs";
-import { AiOutlineStar } from "react-icons/ai";
-import { BiGitRepoForked } from "react-icons/bi";
 
-function ProjectCards(props) {
+function ProjectCards({ title, description, ghLink, demoLink, imgPath, stars, forks, language }) {
   return (
-    <Card className="project-card-view">
-      <Card.Img variant="top" src={props.imgPath} alt="card-img" />
-      <Card.Body>
-        <Card.Title>{props.title}</Card.Title>
-        <Card.Text style={{ textAlign: "justify" }}>
-          {props.description}
+    <Card className="project-card-view h-100">
+      {/* Status bar */}
+      <div style={{
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        padding: "6px 12px",
+        background: "rgba(0,255,65,0.04)",
+        borderBottom: "1px solid var(--border-green)",
+        fontFamily: "var(--font-mono)", fontSize: "0.68rem",
+      }}>
+        <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <span style={{
+            width: 6, height: 6, borderRadius: "50%",
+            background: "var(--cyber-green)",
+            boxShadow: "0 0 6px var(--cyber-green)",
+            display: "inline-block",
+          }} />
+          <span style={{ color: "var(--cyber-green)" }}>[PROC ACTIVE]</span>
+        </span>
+        {language && (
+          <span className="neon-badge-blue">{language}</span>
+        )}
+      </div>
+
+      {/* Thumbnail */}
+      <Card.Img
+        variant="top"
+        src={imgPath}
+        alt={title}
+        className="card-img-top"
+        style={{ height: 160, objectFit: "cover" }}
+      />
+
+      <Card.Body style={{ padding: "16px", display: "flex", flexDirection: "column", gap: 8 }}>
+        <Card.Title style={{
+          fontFamily: "var(--font-mono)", fontSize: "0.95rem",
+          color: "var(--cyber-green)", fontWeight: 700,
+          marginBottom: 4,
+        }}>
+          {title}
+        </Card.Title>
+
+        <Card.Text style={{
+          fontFamily: "var(--font-mono)", fontSize: "0.78rem",
+          color: "var(--text-primary)", lineHeight: 1.7,
+          flex: 1,
+        }}>
+          {description}
         </Card.Text>
 
-        {/* Stats row: language, stars, forks */}
-        <div style={{ paddingBottom: "15px", display: "flex", alignItems: "center", gap: "10px" }}>
-          {props.language && (
-            <span className="purple" style={{ fontSize: "0.9em" }}>
-              {props.language}
-            </span>
-          )}
-          <span style={{ fontSize: "0.9em", display: "flex", alignItems: "center", gap: "3px" }}>
-            <AiOutlineStar /> {props.stars || 0}
-          </span>
-          <span style={{ fontSize: "0.9em", display: "flex", alignItems: "center", gap: "3px" }}>
-            <BiGitRepoForked /> {props.forks || 0}
-          </span>
+        {/* Stats */}
+        <div style={{
+          display: "flex", gap: 16,
+          fontFamily: "var(--font-mono)", fontSize: "0.72rem",
+          color: "var(--text-muted)", margin: "4px 0",
+        }}>
+          <span>★ {stars ?? 0}</span>
+          <span>⑂ {forks ?? 0}</span>
         </div>
 
-        <Button variant="primary" href={props.ghLink} target="_blank">
-          <BsGithub /> &nbsp;
-          {props.isBlog ? "Blog" : "GitHub"}
-        </Button>
-
-        {/* Demo button — only shown when a link is present */}
-        {!props.isBlog && props.demoLink && (
+        {/* Buttons */}
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
           <Button
-            variant="primary"
-            href={props.demoLink}
+            href={ghLink}
             target="_blank"
-            style={{ marginLeft: "10px" }}
+            rel="noreferrer"
+            className="cyber-btn"
+            style={{ fontSize: "0.72rem", padding: "5px 12px" }}
           >
-            <CgWebsite /> &nbsp;Demo
+            <AiFillGithub style={{ marginRight: 4 }} />
+            git clone
           </Button>
-        )}
+          {demoLink && (
+            <Button
+              href={demoLink}
+              target="_blank"
+              rel="noreferrer"
+              className="cyber-btn cyber-btn-blue"
+              style={{ fontSize: "0.72rem", padding: "5px 12px" }}
+            >
+              <CgWebsite style={{ marginRight: 4 }} />
+              ./demo.sh
+            </Button>
+          )}
+        </div>
       </Card.Body>
     </Card>
   );
