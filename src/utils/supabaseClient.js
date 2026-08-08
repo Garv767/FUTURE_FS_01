@@ -7,6 +7,9 @@ if (!supabaseUrl || !supabaseAnonKey) {
   console.warn("Supabase credentials are missing. Curated features will be disabled.");
 }
 
+console.log("[DEBUG] REACT_APP_SUPABASE_URL length:", supabaseUrl ? supabaseUrl.length : 0);
+console.log("[DEBUG] REACT_APP_SUPABASE_ANON_KEY length:", supabaseAnonKey ? supabaseAnonKey.length : 0);
+
 // Only initialize if we have a URL, otherwise export a dummy object to prevent app crash
 export const supabase = supabaseUrl 
   ? createClient(supabaseUrl, supabaseAnonKey || '') 
