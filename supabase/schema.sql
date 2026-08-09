@@ -43,3 +43,43 @@ CREATE TRIGGER set_updated_at
 BEFORE UPDATE ON public.portfolio_projects
 FOR EACH ROW
 EXECUTE FUNCTION handle_updated_at();
+
+-- Table and trigger for portfolio_mission_logs
+create table public.portfolio_mission_logs (
+  id uuid not null default gen_random_uuid (),
+  title text not null,
+  category text not null,
+  badge text not null default ''::text,
+  date date not null,
+  organization text not null default ''::text,
+  description text not null default ''::text,
+  highlights text[] not null default '{}'::text[],
+  is_visible boolean not null default true,
+  priority integer not null default 999,
+  created_at timestamp with time zone not null default now(),
+  updated_at timestamp with time zone not null default now(),
+  constraint portfolio_mission_logs_pkey primary key (id),
+  constraint portfolio_mission_logs_category_check check (
+    (
+      category = any (
+        array[
+          'hackathon'::text,
+          'ctf'::text,
+          'leadership'::text
+        ]
+      )
+    )
+  )
+) TABLESPACE pg_default;
+
+CREATE OR REPLACE FUNCTION update_portfolio_mission_logs_timestamp()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = now();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+create trigger portfolio_mission_logs_updated_at BEFORE
+update on portfolio_mission_logs for EACH row
+execute FUNCTION update_portfolio_mission_logs_timestamp();
