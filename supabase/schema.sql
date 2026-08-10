@@ -83,3 +83,26 @@ $$ LANGUAGE plpgsql;
 create trigger portfolio_mission_logs_updated_at BEFORE
 update on portfolio_mission_logs for EACH row
 execute FUNCTION update_portfolio_mission_logs_timestamp();
+
+-- Table and trigger for portfolio_ats_config
+CREATE TABLE public.portfolio_ats_config (
+    id uuid NOT NULL DEFAULT gen_random_uuid(),
+    config_key text NOT NULL,
+    config_value jsonb NOT NULL,
+    description text,
+    updated_at timestamp with time zone NOT NULL DEFAULT now(),
+    CONSTRAINT portfolio_ats_config_pkey PRIMARY KEY (id),
+    CONSTRAINT portfolio_ats_config_config_key_key UNIQUE (config_key)
+) TABLESPACE pg_default;
+
+CREATE OR REPLACE FUNCTION update_ats_config_timestamp()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = now();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER ats_config_updated_at BEFORE
+UPDATE ON portfolio_ats_config FOR EACH ROW
+EXECUTE FUNCTION update_ats_config_timestamp();
