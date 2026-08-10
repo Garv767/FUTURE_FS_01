@@ -24,16 +24,16 @@ jobs:
           if [ -z "$REACT_APP_SUPABASE_URL" ]; then echo "⚠️ URL IS EMPTY!"; fi
           if [ -z "$REACT_APP_SUPABASE_ANON_KEY" ]; then echo "⚠️ ANON KEY IS EMPTY!"; fi
         env:
-          REACT_APP_SUPABASE_URL: ${{ secrets.REACT_APP_SUPABASE_URL || vars.REACT_APP_SUPABASE_URL }}
-          REACT_APP_SUPABASE_ANON_KEY: ${{ secrets.REACT_APP_SUPABASE_ANON_KEY || vars.REACT_APP_SUPABASE_ANON_KEY }}
+          REACT_APP_SUPABASE_URL: ${{ vars.REACT_APP_SUPABASE_URL }}
+          REACT_APP_SUPABASE_ANON_KEY: ${{ vars.REACT_APP_SUPABASE_ANON_KEY }}
 
       - name: Install and Build 🔧
         run: |
           npm install
           npm run build
         env:
-          REACT_APP_SUPABASE_URL: ${{ secrets.REACT_APP_SUPABASE_URL || vars.REACT_APP_SUPABASE_URL }}
-          REACT_APP_SUPABASE_ANON_KEY: ${{ secrets.REACT_APP_SUPABASE_ANON_KEY || vars.REACT_APP_SUPABASE_ANON_KEY }}
+          REACT_APP_SUPABASE_URL: ${{ vars.REACT_APP_SUPABASE_URL }}
+          REACT_APP_SUPABASE_ANON_KEY: ${{ vars.REACT_APP_SUPABASE_ANON_KEY }}
           # Ensure Node uses the correct homepage for public assets
           PUBLIC_URL: /portfolio
 
