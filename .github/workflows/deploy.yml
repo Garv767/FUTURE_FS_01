@@ -19,10 +19,8 @@ jobs:
 
       - name: Debug Secrets 🔍
         run: |
-          echo "Checking REACT_APP_SUPABASE_URL length: ${#REACT_APP_SUPABASE_URL}"
-          echo "Checking REACT_APP_SUPABASE_ANON_KEY length: ${#REACT_APP_SUPABASE_ANON_KEY}"
-          if [ -z "$REACT_APP_SUPABASE_URL" ]; then echo "⚠️ URL IS EMPTY!"; fi
-          if [ -z "$REACT_APP_SUPABASE_ANON_KEY" ]; then echo "⚠️ ANON KEY IS EMPTY!"; fi
+          echo "Checking REACT_APP_SUPABASE_URL: ${REACT_APP_SUPABASE_URL:+DETECTED}"
+          echo "Checking REACT_APP_SUPABASE_ANON_KEY: ${REACT_APP_SUPABASE_ANON_KEY:+DETECTED}"
         env:
           REACT_APP_SUPABASE_URL: ${{ vars.REACT_APP_SUPABASE_URL }}
           REACT_APP_SUPABASE_ANON_KEY: ${{ vars.REACT_APP_SUPABASE_ANON_KEY }}

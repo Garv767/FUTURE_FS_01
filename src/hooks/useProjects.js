@@ -74,9 +74,7 @@ const useProjects = () => {
 
         setProjects(merged);
       } catch (err) {
-        console.error("❌ Error fetching projects in useProjects hook:");
-        console.error("[DEBUG] Supabase URL mapped to:", process.env.REACT_APP_SUPABASE_URL);
-        console.dir(err);
+        console.error("Error fetching projects:", err);
         setError(err);
       } finally {
         setLoading(false);
